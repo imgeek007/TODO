@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +26,29 @@ public class AddTaskActivity extends AppCompatActivity {
         title = findViewById(R.id.task_title);
         description = findViewById(R.id.task_description);
         deadline = findViewById(R.id.task_deadline);
+
+        deadline.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                Log.d("ololo", "beforeTextChanged");
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.d("ololo", "onTextChanged");
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.d("ololo", "afterTextChanged");
+            }
+        });
+deadline.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Log.d("ololo", "onClickListener");
+    }
+});
 
         Button saveBtn = findViewById(R.id.task_save);
         Button editSave = findViewById(R.id.edit_save);
@@ -45,7 +71,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     task.description = description.getText().toString().trim();
                 }
 
-                task.deadline = deadline.getText().toString();
+                task.oldDeadline = deadline.getText().toString();
 
 
                 Intent intent = new Intent();
@@ -75,7 +101,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     task.description = description.getText().toString().trim();
                 }
 
-                task.deadline = deadline.getText().toString();
+                task.oldDeadline = deadline.getText().toString();
 
 
                 Intent intent = new Intent();

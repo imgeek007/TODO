@@ -1,12 +1,9 @@
 package com.geektech.todo;
 
-import android.app.Application;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -83,7 +80,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public void onBind(Task task) {
             title.setText(task.title);
             description.setText(task.description);
-            deadline.setText(task.deadline);
+            deadline.setText(task.oldDeadline);
         }
     }
 }

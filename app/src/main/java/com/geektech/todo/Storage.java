@@ -14,14 +14,14 @@ public class Storage {
     static void save(ArrayList<Task> tasks, Context context) {
         Gson gson = new Gson();
         String jsonTasks = gson.toJson(tasks);
-        SharedPreferences sp = context.getSharedPreferences("my_sp", Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences("my_sp2", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("tasks", jsonTasks);
         editor.commit();
     }
 
     static ArrayList<Task> read(Context context) {
-        SharedPreferences sp = context.getSharedPreferences("my_sp", Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences("my_sp2", Context.MODE_PRIVATE);
         String jsonTasks = sp.getString("tasks", "");
 
         if (jsonTasks == "") { return new ArrayList<>(); }
